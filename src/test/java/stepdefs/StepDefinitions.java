@@ -8,7 +8,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static client.FileTableField.LastModified;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StepDefinitions extends CucumberConfig {
 
@@ -42,10 +49,28 @@ public class StepDefinitions extends CucumberConfig {
 
     @Then("the files are sorted by {fileTableField} ascending")
     public void theFilesAreSortedByNameAscending(FileTableField fileTableField) {
+        if(fileTableField == LastModified){
+
+        }
+        else {
+            List<String> column = rainbirdInteractor.getFilesColumnContents(fileTableField);
+            List<String> sortedColumn = new ArrayList<String>(column);
+            Collections.sort(sortedColumn);
+            assertEquals(sortedColumn, column);
+        }
     }
 
     @Then("the files are sorted by {fileTableField} descending")
     public void theFilesAreSortedByNameDescending(FileTableField fileTableField) {
+        if(fileTableField == LastModified){
+
+        }
+        else {
+            List<String> column = rainbirdInteractor.getFilesColumnContents(fileTableField);
+            List<String> sortedColumn = new ArrayList<String>(column);
+            sortedColumn.sort(Collections.reverseOrder());
+            assertEquals(sortedColumn, column);
+        }
     }
 
 }
