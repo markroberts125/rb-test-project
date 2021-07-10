@@ -13,11 +13,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static client.FileTableField.LastModified;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class StepDefinitions extends CucumberConfig {
 
@@ -52,15 +50,14 @@ public class StepDefinitions extends CucumberConfig {
     @Then("the files are sorted by {fileTableField} ascending")
     public void theFilesAreSortedByNameAscending(FileTableField fileTableField) {
         List<String> column = rainbirdInteractor.getFilesColumnContents(fileTableField);
-        if(fileTableField == LastModified){
+        if (fileTableField == LastModified) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\n HH:mm");
             List<LocalDateTime> dateTimeColumn = new ArrayList<>();
             column.forEach(entry -> dateTimeColumn.add(LocalDateTime.parse(entry, formatter)));
             List<LocalDateTime> sortedDateTimeColumn = new ArrayList<>(dateTimeColumn);
             Collections.sort(sortedDateTimeColumn);
             assertEquals(sortedDateTimeColumn, dateTimeColumn);
-        }
-        else {
+        } else {
             List<String> sortedColumn = new ArrayList<String>(column);
             Collections.sort(sortedColumn);
             assertEquals(sortedColumn, column);
@@ -70,15 +67,14 @@ public class StepDefinitions extends CucumberConfig {
     @Then("the files are sorted by {fileTableField} descending")
     public void theFilesAreSortedByNameDescending(FileTableField fileTableField) {
         List<String> column = rainbirdInteractor.getFilesColumnContents(fileTableField);
-        if(fileTableField == LastModified){
+        if (fileTableField == LastModified) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy\n HH:mm");
             List<LocalDateTime> dateTimeColumn = new ArrayList<>();
             column.forEach(entry -> dateTimeColumn.add(LocalDateTime.parse(entry, formatter)));
             List<LocalDateTime> sortedDateTimeColumn = new ArrayList<>(dateTimeColumn);
             sortedDateTimeColumn.sort(Collections.reverseOrder());
             assertEquals(sortedDateTimeColumn, dateTimeColumn);
-        }
-        else {
+        } else {
             List<String> sortedColumn = new ArrayList<String>(column);
             sortedColumn.sort(Collections.reverseOrder());
             assertEquals(sortedColumn, column);
