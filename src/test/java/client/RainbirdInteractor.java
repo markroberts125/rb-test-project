@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
-import static client.FileTableField.LastModified;
-
 public class RainbirdInteractor {
 
     private static final String STUDIO_RESOURCE = "/files";
@@ -27,7 +25,6 @@ public class RainbirdInteractor {
     private static final String DESCRIPTION_COLUMN = ".//tr/td[2]";
     private static final String LAST_MODIFIED_HEADER = "//*[@id=\"root\"]/div/table/thead/tr/td[3]/div/div[1]";
     private static final String LAST_MODIFIED_COLUMN = ".//tr/td[3]";
-
 
     String url;
     String username;
