@@ -1,11 +1,14 @@
 package stepdefs;
 
+import client.FileTableField;
 import client.RainbirdInteractor;
 import config.CucumberConfig;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.junit.Assert.assertEquals;
 
 public class StepDefinitions extends CucumberConfig {
 
@@ -17,61 +20,32 @@ public class StepDefinitions extends CucumberConfig {
         rainbirdInteractor.login();
     }
 
-    @Given("I am on the files page")
-    public void iAmOnTheFilesPage() {
-
+    @Given("I am on the studio page")
+    public void iAmOnTheStudioPage() {
+        rainbirdInteractor.goToStudioPage();
     }
 
     @When("I am on the default sort")
     public void iAmOnTheDefaultSort() {
+        //Nothing to do here, it's the default
     }
 
-    @When("I sort by name ascending")
-    public void iSortByNameAscending() {
+    @When("I sort by {fileTableField} ascending")
+    public void iSortByNameAscending(FileTableField fileTableField) {
+        rainbirdInteractor.setAscending(fileTableField);
     }
 
-    @When("I sort by name descending")
-    public void iSortByNameDescending() {
+    @When("I sort by {fileTableField} descending")
+    public void iSortByNameDescending(FileTableField fileTableField) {
+        rainbirdInteractor.setDescending(fileTableField);
     }
 
-    @When("I sort by description ascending")
-    public void iSortByDescriptionAscending() {
+    @Then("the files are sorted by {fileTableField} ascending")
+    public void theFilesAreSortedByNameAscending(FileTableField fileTableField) {
     }
 
-    @When("I sort by description descending")
-    public void iSortByDescriptionDescending() {
-    }
-
-    @When("I sort by last modified ascending")
-    public void iSortByLastModifiedAscending() {
-    }
-
-    @When("I sort by last modified descending")
-    public void iSortByLastModifiedDescending() {
-    }
-
-    @Then("the files are sorted by name ascending")
-    public void theFilesAreSortedByNameAscending() {
-    }
-
-    @Then("the files are sorted by name descending")
-    public void theFilesAreSortedByNameDescending() {
-    }
-
-    @Then("the files are sorted by description ascending")
-    public void theFilesAreSortedByDescriptionAscending() {
-    }
-
-    @Then("the files are sorted by description descending")
-    public void theFilesAreSortedByDescriptionDescending() {
-    }
-
-    @Then("the files are sorted by last modified ascending")
-    public void theFilesAreSortedByLastModifiedAscending() {
-    }
-
-    @Then("the files are sorted by last modified descending")
-    public void theFilesAreSortedByLastModifiedDescending() {
+    @Then("the files are sorted by {fileTableField} descending")
+    public void theFilesAreSortedByNameDescending(FileTableField fileTableField) {
     }
 
 }
