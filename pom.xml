@@ -46,6 +46,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
+        <!-- Selenium -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+
+
     </dependencies>
 
     <properties>

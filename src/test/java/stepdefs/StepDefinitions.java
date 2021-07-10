@@ -1,15 +1,20 @@
 package stepdefs;
 
+import client.RainbirdInteractor;
 import config.CucumberConfig;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class StepDefinitions extends CucumberConfig {
 
+    @Autowired
+    RainbirdInteractor rainbirdInteractor;
+
     @Given("I am logged in")
     public void iAmLoggedIn() {
-
+        rainbirdInteractor.login();
     }
 
     @Given("I am on the files page")
